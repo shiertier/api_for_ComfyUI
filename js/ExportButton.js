@@ -8,7 +8,7 @@ const ext = {
       exportButton.onclick = async function () {
         try {
           const { output, workflow } = await app.graphToPrompt();
-          const input = workflow.nodes
+          const inputs = workflow.nodes
             .filter(node => node.type === 'PrimitiveNode')
             .map(node => {
               const widget = app.graph._nodes_by_id[node.id].widgets[0];
@@ -47,7 +47,7 @@ const ext = {
           saveToFile(
             JSON.stringify({
               prompt: output,
-              chenyu_data: { input },
+              chenyu_data: { inputs },
               extra_data: {
                 extra_pnginfo: { workflow }
               }
